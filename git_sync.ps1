@@ -1,6 +1,6 @@
 ﻿# ╔══════════════════════════════════════════════════════════════════════════════╗
 # ║  git sync  ·  Stream Toolkit                                                ║
-# ║  repository : https://github.com/chaiz64/douyin-downloader.git                ║
+# ║  repository : https://github.com/chaiz64/douyin-downloaderz.git                ║
 # ╚══════════════════════════════════════════════════════════════════════════════╝
 #
 #  Architecture
@@ -24,7 +24,7 @@ $ErrorActionPreference = "Continue"
 #  CONFIG
 # ══════════════════════════════════════════════════════════════════════════════
 # Get active repository remote URL or fallback
-$remoteUrl = "https://github.com/chaiz64/douyin-downloader.git"
+$remoteUrl = "https://github.com/chaiz64/douyin-downloaderz.git"
 if (Get-Command git -ErrorAction SilentlyContinue) {
     $gitRemote = git remote get-url origin 2>$null
     if ($gitRemote) { $remoteUrl = $gitRemote.Trim() }
