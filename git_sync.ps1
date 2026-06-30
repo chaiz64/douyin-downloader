@@ -31,7 +31,7 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
 }
 
 $cfg = @{
-    ProjectDir   = if ($PSScriptRoot) { $PSScriptRoot } else { "D:\Github\NotebookLM" }
+    ProjectDir   = if ($PSScriptRoot) { $PSScriptRoot } else { "C:\MyCodes\d0uyin_t00ls\douyin-downloader" }
     RepoUrl      = $remoteUrl
     LargeFileMB  = 95          # GitHub hard limit is 100 MB; stay safely under
     GitHubHardMB = 100
@@ -94,11 +94,11 @@ function Write-PanelLine {
     $label = "{0,-12}" -f $Key
     Write-Host "  │  " -ForegroundColor $t.Muted -NoNewline
     Write-Host $label -ForegroundColor $t.Muted -NoNewline
-    
+
     $valStr = $Value
     if ($valStr.Length -gt 57) { $valStr = $valStr.Substring(0, 54) + "..." }
     $valPad = "{0,-59}" -f $valStr
-    
+
     Write-Host $valPad -ForegroundColor $ValueColor -NoNewline
     Write-Host "│" -ForegroundColor $t.Muted
 }
@@ -117,7 +117,7 @@ function Write-Banner {
     $logo4 = "  ██║   ██║██║   ██║╚════╝ ╚════██║  ╚██╔╝  ██║╚██╗██║██║      "
     $logo5 = "  ╚██████╔╝██║   ██║       ███████║   ██║   ██║ ╚████║╚██████╗ "
     $logo6 = "   ╚═════╝ ╚═╝   ╚═╝       ╚══════╝   ╚═╝   ╚═╝  ╚═══╝ ╚═════╝ "
-    
+
     Write-Host $logo1 -ForegroundColor $t.Primary
     Write-Host $logo2 -ForegroundColor $t.Primary
     Write-Host $logo3 -ForegroundColor $t.Primary
@@ -129,18 +129,18 @@ function Write-Banner {
 
 function Write-WorkspacePanel {
     param([string]$Branch)
-    
-    $panelTop    = "╭─────────────────────────────────────────────────────────────────────────╮"
+
+    $panelTop = "╭─────────────────────────────────────────────────────────────────────────╮"
     $panelMiddle = "├─────────────────────────────────────────────────────────────────────────┤"
     $panelBottom = "╰─────────────────────────────────────────────────────────────────────────╯"
 
     $branchColor = if ($Branch -match "^(main|master)$") { $t.Ok } else { $t.Secondary }
 
     Write-Host "  $panelTop" -ForegroundColor $t.Muted
-    
+
     Write-Host "  │" -ForegroundColor $t.Muted -NoNewline
     Write-Host "  STREAM TOOLKIT" -ForegroundColor $t.Primary -NoNewline
-    
+
     $versionStr = "GIT SYNC $global:ScriptVersion"
     $padLength = 73 - 2 - 14 - $versionStr.Length - 1
     Write-Host (" " * $padLength) -NoNewline
@@ -153,7 +153,7 @@ function Write-WorkspacePanel {
     Write-PanelLine "Remote"  $cfg.RepoUrl $t.Text
     Write-PanelLine "Branch"  $Branch $branchColor
     Write-PanelLine "Size Gate" "$($cfg.LargeFileMB) MB (GitHub Limit: $($cfg.GitHubHardMB) MB)" $t.Muted
-    
+
     Write-Host "  $panelBottom" -ForegroundColor $t.Muted
     Write-Blank
 }
